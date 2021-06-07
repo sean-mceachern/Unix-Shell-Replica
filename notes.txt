@@ -1,0 +1,89 @@
+OTHERS:
+----------------------------------------------------------------
+myspin.cc: puts the parent process to sleep for (n) secs.
+----------------------------------------------------------------
+mysplit.cc: puts the child process to sleep for (n) secs.
+----------------------------------------------------------------
+myint.cc: sounds interrupt signal from outside process
+----------------------------------------------------------------
+mystop.cc: sends stop signal from outside process
+
+
+
+
+----------------------------------------------------------------
+main():
+1. install signals:
+    a. SIGINT (CTRL-C): Interrupt from Keyboard
+    b. SIGTSTP (CTRL-Z): Stop until next continue signal (stop from terminal)
+    c. SIGCHLD (stop child): A child processs has stopped or terminated.
+    d. SIGQUIT ("quit"): quit from keyboard.
+
+----------------------------------------------------------------
+
+eval(): parses command line and runs programs on the users behalf.
+
+1. &mask used to send the desired signals.
+
+----------------------------------------------------------------
+
+builtin_cmd(): assigns the buitin commands
+
+1. quit = quits
+   jobs = lists jobs
+   assign job to bg or fg
+
+----------------------------------------------------------------
+
+do_bgfg(): executes BG or FG command if the user inputs a desired environment.
+
+----------------------------------------------------------------
+
+waitfg(): blocks terminal use until FG job completes.
+
+----------------------------------------------------------------
+
+TRACES:
+
+1. Terminate proccess on EOF.
+
+2. built in "quit" function
+
+3. runs a FG job (.tsh) and quits
+
+4. runs a bg job (./myspin for 1 second)
+
+5. prints the jobs list of BG jobs
+ 
+6. sends interrupt signal to job ./myspin (FG)
+
+7. sends interrupt to FG job while FG and BG jobs run
+
+8. sends terminal stop to FG job while FG and BG jobs run
+
+9. sends terminal stop to FG job (sleeps (2)) while FG and BG run FG runs again
+
+10. stops FG process while BG continues
+
+11. terminates all processes in the FG (sleep and mysplit)
+
+12. stops all processes in the FG (sleep and mysplit)
+
+13. restarts all processes in the FG (sleep and mysplit) that were stopped
+
+14. handles cases where the commandline passed incorrectly
+
+15. does it all. incorrect commandline, terminates FG, prints jobs, stops FG, handles incorrect FG and BG, quits
+ 
+16. checks to see if mystp and myint (stop & intterupt) can send signals from another process outside of the terminal
+
+
+
+
+
+
+
+Quiz8 fork questions. PID to parent vs. child
+
+
+
